@@ -1,6 +1,8 @@
 defmodule GameWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :game
 
+  socket "/live", Phoenix.LiveView.Socket
+
   socket "/socket", GameWeb.UserSocket,
     websocket: true,
     longpoll: false
@@ -40,7 +42,7 @@ defmodule GameWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_game_key",
-    signing_salt: "rTFFFgx1"
+    signing_salt: "oLJLqxP6"
 
   plug GameWeb.Router
 end

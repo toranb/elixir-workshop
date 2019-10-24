@@ -1,19 +1,35 @@
-# Game
+To build the container with docker
 
-To start your Phoenix server:
+```
+docker build -t game .
+```
 
-  * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+To run the container and mount the game volume
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```
+docker run -it -p 4000:4000 -v $(pwd):/game game
+```
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Install dependencies at the command line
 
-## Learn more
+```
+mix deps.get
+```
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+To run the web server and visit localhost:4000
+
+```
+mix phx.server
+```
+
+To run the tests
+
+```
+mix test.watch test/game/game_test.exs
+```
+
+To run all of the tests
+
+```
+mix test
+```

@@ -10,9 +10,12 @@ use Mix.Config
 # Configures the endpoint
 config :game, GameWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "pVMvop5wr/HzuCdOAF1X4cNyXBWUl1lSUHFu7rmEuSHOlQnlr5gQWx7hpwz07yiI",
+  secret_key_base: "tP2UtdqHFCxhwEaP30wE1KcSTUw3wMlvNI7FC2i2oxhnlMO1TWfI4yLcMwjbuxy8",
   render_errors: [view: GameWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Game.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Game.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: "2hbvutWlGq6CSJov2umfqmO64MnaxFGT"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
