@@ -68,7 +68,7 @@ One edge case here is that if 2 cards are flipped but they do *not* match, you n
 
 ![unfliip](https://user-images.githubusercontent.com/147411/67634902-4ac5ce80-f88f-11e9-8bbe-451093d55e4d.gif)
 
-This function is executed after a 2nd card has flipped but failed to match. Simply enumberate the cards and mark the `flipped` attribute to false for any non paired card. You will also need to revert `animating` to false so the flip function works properly.
+This function is executed after a 2nd card has flipped but failed to match. Simply enumerate the cards and mark the `flipped` attribute to false for any non paired card. You will also need to revert `animating` to false so the flip function works properly.
 
 ### prepare_restart
 
