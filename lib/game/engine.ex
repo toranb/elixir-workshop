@@ -20,8 +20,8 @@ defmodule Game.Engine do
     %{struct | cards: new_cards, animating: false}
   end
 
-  def flip(%__MODULE__{cards: cards, animating: animating} = struct, flip_id) do
-    if animating == true do
+  def flip(%__MODULE__{cards: cards, animating: animating, winner: winner} = struct, flip_id) do
+    if animating == true or winner == true do
       struct
     else
       cards
