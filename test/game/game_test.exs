@@ -72,283 +72,283 @@ defmodule Game.EngineTest do
     assert flip_four == false
   end
 
-  test "flipping the 2nd card in a match will mark the cards as paired and revert flipped to false" do
-    state = Game.Engine.new(@playing_cards, FakeRandom)
-    new_state = Game.Engine.flip(state, @id_two_a)
-    paired_state = Game.Engine.flip(new_state, @id_two_b)
+  # test "flipping the 2nd card in a match will mark the cards as paired and revert flipped to false" do
+  #   state = Game.Engine.new(@playing_cards, FakeRandom)
+  #   new_state = Game.Engine.flip(state, @id_two_a)
+  #   paired_state = Game.Engine.flip(new_state, @id_two_b)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = paired_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = paired_state
 
-    assert winner == false
-    assert animating == false
-    assert Enum.count(cards) == 4
+  #   assert winner == false
+  #   assert animating == false
+  #   assert Enum.count(cards) == 4
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == false
-    assert flip_two == false
-    assert flip_three == false
-    assert flip_four == false
+  #   assert flip_one == false
+  #   assert flip_two == false
+  #   assert flip_three == false
+  #   assert flip_four == false
 
-    assert paired_one == false
-    assert paired_two == false
-    assert paired_three == true
-    assert paired_four == true
-  end
+  #   assert paired_one == false
+  #   assert paired_two == false
+  #   assert paired_three == true
+  #   assert paired_four == true
+  # end
 
-  test "flipping the 2nd card that is NOT a match will mark the cards as flipped but not paired" do
-    state = Game.Engine.new(@playing_cards, FakeRandom)
-    new_state = Game.Engine.flip(state, @id_two_a)
-    incorrect_state = Game.Engine.flip(new_state, @id_one_a)
+  # test "flipping the 2nd card that is NOT a match will mark the cards as flipped but not paired" do
+  #   state = Game.Engine.new(@playing_cards, FakeRandom)
+  #   new_state = Game.Engine.flip(state, @id_two_a)
+  #   incorrect_state = Game.Engine.flip(new_state, @id_one_a)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = incorrect_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = incorrect_state
 
-    assert winner == false
-    assert animating == true
-    assert Enum.count(cards) == 4
+  #   assert winner == false
+  #   assert animating == true
+  #   assert Enum.count(cards) == 4
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == true
-    assert flip_two == false
-    assert flip_three == true
-    assert flip_four == false
+  #   assert flip_one == true
+  #   assert flip_two == false
+  #   assert flip_three == true
+  #   assert flip_four == false
 
-    assert paired_one == false
-    assert paired_two == false
-    assert paired_three == false
-    assert paired_four == false
-  end
+  #   assert paired_one == false
+  #   assert paired_two == false
+  #   assert paired_three == false
+  #   assert paired_four == false
+  # end
 
-  test "flipping when animating is marked as true flip does nothing" do
-    state = %Game.Engine{
-      cards: [
-        %Card{:id => "24CEDF1", :flipped => false, :paired => false},
-        %Card{:id => "3079821", :flipped => true, :paired => false},
-        %Card{:id => "24CEDF2", :flipped => true, :paired => false},
-        %Card{:id => "3079822", :flipped => false, :paired => false}
-      ],
-      winner: nil,
-      animating: true
-    }
+  # test "flipping when animating is marked as true flip does nothing" do
+  #   state = %Game.Engine{
+  #     cards: [
+  #       %Card{:id => "24CEDF1", :flipped => false, :paired => false},
+  #       %Card{:id => "3079821", :flipped => true, :paired => false},
+  #       %Card{:id => "24CEDF2", :flipped => true, :paired => false},
+  #       %Card{:id => "3079822", :flipped => false, :paired => false}
+  #     ],
+  #     winner: nil,
+  #     animating: true
+  #   }
 
-    new_state = Game.Engine.flip(state, @id_two_a)
+  #   new_state = Game.Engine.flip(state, @id_two_a)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = new_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = new_state
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == false
-    assert flip_two == true
-    assert flip_three == true
-    assert flip_four == false
+  #   assert flip_one == false
+  #   assert flip_two == true
+  #   assert flip_three == true
+  #   assert flip_four == false
 
-    assert paired_one == false
-    assert paired_two == false
-    assert paired_three == false
-    assert paired_four == false
+  #   assert paired_one == false
+  #   assert paired_two == false
+  #   assert paired_three == false
+  #   assert paired_four == false
 
-    assert winner == nil
-    assert animating == true
-  end
+  #   assert winner == nil
+  #   assert animating == true
+  # end
 
-  test "flipping when winner is marked as true flip does nothing" do
-    state = %Game.Engine{
-      cards: [
-        %Card{:id => "24CEDF1", :flipped => false, :paired => true},
-        %Card{:id => "3079821", :flipped => false, :paired => true},
-        %Card{:id => "24CEDF2", :flipped => false, :paired => true},
-        %Card{:id => "3079822", :flipped => false, :paired => true}
-      ],
-      winner: true,
-      animating: false
-    }
+  # test "flipping when winner is marked as true flip does nothing" do
+  #   state = %Game.Engine{
+  #     cards: [
+  #       %Card{:id => "24CEDF1", :flipped => false, :paired => true},
+  #       %Card{:id => "3079821", :flipped => false, :paired => true},
+  #       %Card{:id => "24CEDF2", :flipped => false, :paired => true},
+  #       %Card{:id => "3079822", :flipped => false, :paired => true}
+  #     ],
+  #     winner: true,
+  #     animating: false
+  #   }
 
-    new_state = Game.Engine.flip(state, @id_two_a)
+  #   new_state = Game.Engine.flip(state, @id_two_a)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = new_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = new_state
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == false
-    assert flip_two == false
-    assert flip_three == false
-    assert flip_four == false
+  #   assert flip_one == false
+  #   assert flip_two == false
+  #   assert flip_three == false
+  #   assert flip_four == false
 
-    assert paired_one == true
-    assert paired_two == true
-    assert paired_three == true
-    assert paired_four == true
+  #   assert paired_one == true
+  #   assert paired_two == true
+  #   assert paired_three == true
+  #   assert paired_four == true
 
-    assert winner == true
-    assert animating == false
-  end
+  #   assert winner == true
+  #   assert animating == false
+  # end
 
-  test "unflip will reset animating to false and revert any flipped cards" do
-    state = Game.Engine.new(@playing_cards, FakeRandom)
-    new_state = Game.Engine.flip(state, @id_two_a)
-    incorrect_state = Game.Engine.flip(new_state, @id_one_a)
-    unflipped_state = Game.Engine.unflip(incorrect_state)
+  # test "unflip will reset animating to false and revert any flipped cards" do
+  #   state = Game.Engine.new(@playing_cards, FakeRandom)
+  #   new_state = Game.Engine.flip(state, @id_two_a)
+  #   incorrect_state = Game.Engine.flip(new_state, @id_one_a)
+  #   unflipped_state = Game.Engine.unflip(incorrect_state)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = unflipped_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = unflipped_state
 
-    assert winner == false
-    assert animating == false
-    assert Enum.count(cards) == 4
+  #   assert winner == false
+  #   assert animating == false
+  #   assert Enum.count(cards) == 4
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == false
-    assert flip_two == false
-    assert flip_three == false
-    assert flip_four == false
+  #   assert flip_one == false
+  #   assert flip_two == false
+  #   assert flip_three == false
+  #   assert flip_four == false
 
-    assert paired_one == false
-    assert paired_two == false
-    assert paired_three == false
-    assert paired_four == false
-  end
+  #   assert paired_one == false
+  #   assert paired_two == false
+  #   assert paired_three == false
+  #   assert paired_four == false
+  # end
 
-  test "flipping the last match will mark the winner as truthy and prepare restart will unflip/unpair each card" do
-    state = Game.Engine.new(@playing_cards, FakeRandom)
-    flip_one_state = Game.Engine.flip(state, @id_two_a)
-    paired_one_state = Game.Engine.flip(flip_one_state, @id_two_b)
-    flip_two_state = Game.Engine.flip(paired_one_state, @id_one_a)
-    paired_two_state = Game.Engine.flip(flip_two_state, @id_one_b)
+  # test "flipping the last match will mark the winner as truthy and prepare restart will unflip/unpair each card" do
+  #   state = Game.Engine.new(@playing_cards, FakeRandom)
+  #   flip_one_state = Game.Engine.flip(state, @id_two_a)
+  #   paired_one_state = Game.Engine.flip(flip_one_state, @id_two_b)
+  #   flip_two_state = Game.Engine.flip(paired_one_state, @id_one_a)
+  #   paired_two_state = Game.Engine.flip(flip_two_state, @id_one_b)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = paired_two_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = paired_two_state
 
-    assert winner == true
-    assert animating == false
-    assert Enum.count(cards) == 4
+  #   assert winner == true
+  #   assert animating == false
+  #   assert Enum.count(cards) == 4
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == false
-    assert flip_two == false
-    assert flip_three == false
-    assert flip_four == false
+  #   assert flip_one == false
+  #   assert flip_two == false
+  #   assert flip_three == false
+  #   assert flip_four == false
 
-    assert paired_one == true
-    assert paired_two == true
-    assert paired_three == true
-    assert paired_four == true
+  #   assert paired_one == true
+  #   assert paired_two == true
+  #   assert paired_three == true
+  #   assert paired_four == true
 
-    prepare_restart_state = Game.Engine.prepare_restart(paired_two_state)
+  #   prepare_restart_state = Game.Engine.prepare_restart(paired_two_state)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = prepare_restart_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = prepare_restart_state
 
-    assert winner == true
-    assert animating == false
-    assert Enum.count(cards) == 4
+  #   assert winner == true
+  #   assert animating == false
+  #   assert Enum.count(cards) == 4
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == false
-    assert flip_two == false
-    assert flip_three == false
-    assert flip_four == false
+  #   assert flip_one == false
+  #   assert flip_two == false
+  #   assert flip_three == false
+  #   assert flip_four == false
 
-    assert paired_one == false
-    assert paired_two == false
-    assert paired_three == false
-    assert paired_four == false
+  #   assert paired_one == false
+  #   assert paired_two == false
+  #   assert paired_three == false
+  #   assert paired_four == false
 
-    restart_state = Game.Engine.restart(prepare_restart_state)
+  #   restart_state = Game.Engine.restart(prepare_restart_state)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = restart_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = restart_state
 
-    assert winner == false
-    assert animating == false
-    assert Enum.count(cards) == 4
+  #   assert winner == false
+  #   assert animating == false
+  #   assert Enum.count(cards) == 4
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == false
-    assert flip_two == false
-    assert flip_three == false
-    assert flip_four == false
+  #   assert flip_one == false
+  #   assert flip_two == false
+  #   assert flip_three == false
+  #   assert flip_four == false
 
-    assert paired_one == false
-    assert paired_two == false
-    assert paired_three == false
-    assert paired_four == false
-  end
+  #   assert paired_one == false
+  #   assert paired_two == false
+  #   assert paired_three == false
+  #   assert paired_four == false
+  # end
 
-  test "prepare restart does nothing if winner is nil" do
-    state = %Game.Engine{
-      cards: [
-        %Card{:id => "24CEDF1", :flipped => false, :paired => true},
-        %Card{:id => "3079821", :flipped => true, :paired => false},
-        %Card{:id => "24CEDF2", :flipped => false, :paired => true},
-        %Card{:id => "3079822", :flipped => false, :paired => false}
-      ],
-      winner: nil,
-      animating: false
-    }
+  # test "prepare restart does nothing if winner is nil" do
+  #   state = %Game.Engine{
+  #     cards: [
+  #       %Card{:id => "24CEDF1", :flipped => false, :paired => true},
+  #       %Card{:id => "3079821", :flipped => true, :paired => false},
+  #       %Card{:id => "24CEDF2", :flipped => false, :paired => true},
+  #       %Card{:id => "3079822", :flipped => false, :paired => false}
+  #     ],
+  #     winner: nil,
+  #     animating: false
+  #   }
 
-    new_state = Game.Engine.prepare_restart(state)
+  #   new_state = Game.Engine.prepare_restart(state)
 
-    %Game.Engine{cards: cards, winner: winner, animating: animating} = new_state
+  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = new_state
 
-    [
-      %Card{flipped: flip_one, paired: paired_one},
-      %Card{flipped: flip_two, paired: paired_two},
-      %Card{flipped: flip_three, paired: paired_three},
-      %Card{flipped: flip_four, paired: paired_four}
-    ] = cards
+  #   [
+  #     %Card{flipped: flip_one, paired: paired_one},
+  #     %Card{flipped: flip_two, paired: paired_two},
+  #     %Card{flipped: flip_three, paired: paired_three},
+  #     %Card{flipped: flip_four, paired: paired_four}
+  #   ] = cards
 
-    assert flip_one == false
-    assert flip_two == true
-    assert flip_three == false
-    assert flip_four == false
+  #   assert flip_one == false
+  #   assert flip_two == true
+  #   assert flip_three == false
+  #   assert flip_four == false
 
-    assert paired_one == true
-    assert paired_two == false
-    assert paired_three == true
-    assert paired_four == false
+  #   assert paired_one == true
+  #   assert paired_two == false
+  #   assert paired_three == true
+  #   assert paired_four == false
 
-    assert winner == nil
-    assert animating == false
-  end
+  #   assert winner == nil
+  #   assert animating == false
+  # end
 end
