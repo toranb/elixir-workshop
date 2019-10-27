@@ -1,3 +1,5 @@
+## Installation
+
 To build the container with docker
 
 ```
@@ -33,3 +35,47 @@ To run all of the tests
 ```
 mix test
 ```
+
+## Objectives
+
+The entire workshop centers around a single Elixir source file. The game [engine](https://github.com/toranb/elixir-workshop/blob/master/lib/game/engine.ex) has 3 incomplete functions that need to be implemented for the game to function correctly.
+
+```elixir
+defmodule Game.Engine do
+  def flip(struct, _id) do
+    struct
+  end
+
+  def unflip(struct) do
+    struct
+  end
+
+  def prepare_restart(struct) do
+    struct
+  end
+end
+```
+
+### flip
+
+This function is executed when the player clicks a playing card. Simply enumerate the cards and mark the one with the id as `flipped` using a boolean. If 2 cards have been flipped at this point attempt to match them by the id. When a match is found mark each card as `paired` and set the `flipped` for both back to false. Finally, if all the cards are paired declare the game over by marking the `winner` using a boolean value.
+
+One edge case here is that if 2 cards are flipped but they do *not* match, you need to set the `animating` boolean to true. This will later instruct the engine to fire `unflip`.
+
+### unflip
+
+This function is executed after a 2nd card has flipped but failed to match. Simply enumberate the cards and mark the `flipped` attribute to false for any non paired card. You will also need to revert `animating` to false so the flip function works properly.
+
+### prepare_restart
+
+This function is executed after the player decides to play again. Simply enumerate the cards and mark all `paired` and `flipped` attributes to false.
+
+## Bonus
+
+If you complete the above and want some extra credit the game engine struct has a `score` attribute but it doesn't currently track anything. Update the game engine to increment this value with each card paired.
+
+## License
+
+Copyright © 2019 Toran Billups https://toranbillups.com
+
+Licensed under the MIT License
