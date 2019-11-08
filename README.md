@@ -12,6 +12,12 @@ To run the container and mount the game volume
 docker run -it -p 4000:4000 -v $(pwd):/game game
 ```
 
+To run the container and mount the game volume on windows (with powershell)
+
+```
+docker run -it -p 4000:4000 -v ${PWD}:/game game
+```
+
 Install dependencies at the command line
 
 ```
