@@ -6,13 +6,13 @@ To build the container with docker
 docker build -t game .
 ```
 
-To run the container and mount the game volume
+To run the container on macOS or Linux
 
 ```
 docker run -it -p 4000:4000 -v $(pwd):/game game
 ```
 
-To run the container and mount the game volume on windows (with powershell)
+To run the container on windows with [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-windows-powershell?view=powershell-6#finding-powershell-in-windows-10-81-80-and-7)
 
 ```
 docker run -it -p 4000:4000 -v ${PWD}:/game game
