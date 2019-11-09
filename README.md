@@ -120,6 +120,12 @@ If you answer `n` the program will continue without interruption. If you answer 
 
 For a complete list of [debugging](https://elixir-lang.org/getting-started/debugging.html) options be sure to read over the getting started guide.
 
+## Learning Elixir
+
+Because much of the workshop requires you to loop over the cards list you might benefit from the getting started on [enumerables](https://elixir-lang.org/getting-started/enumerables-and-streams.html#enumerables) and the [pipe-operator](https://elixir-lang.org/getting-started/enumerables-and-streams.html#the-pipe-operator).
+
+In addition, the getting started on [structs](https://elixir-lang.org/getting-started/structs.html) will offer some insights about how to destructure and update them in Elixir.
+
 ## License
 
 Copyright © 2019 Toran Billups https://toranbillups.com
