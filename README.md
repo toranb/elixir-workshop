@@ -86,6 +86,40 @@ This function is executed after the player decides to play again. Simply enumera
 
 If you complete the above and want some extra credit the game engine struct has a `score` attribute but it doesn't currently track anything. Update the game engine to increment this value with each card paired.
 
+## Debugging Tips
+
+To print something in the Elixir source code use `IO.inspect`
+
+```elixir
+"Hello World!" |> IO.inspect()
+
+foo_bar |> IO.inspect(label: "The foo_bar variable")
+```
+
+To hang a debugger in the Elixir source code use `IEx.pry`
+
+```elixir
+require IEx
+
+def flip(struct, card_id) do
+  IEx.pry
+
+  struct
+end
+```
+
+If you are using `IEx.pry` with the test runner you cannot use watch so instead
+
+```
+iex -S mix test test/game/game_test.exs
+```
+
+When `IEx.pry` is executed the runtime will ask you `Allow? [Yn]`
+
+If you say `n` the program will continue without interruption. If you answer `Y` you can ask questions of the running program. If you want to continue execution of the program type `respawn` and hit enter.
+
+For a complete list of [debugging](https://elixir-lang.org/getting-started/debugging.html) options be sure to read over the getting started guide.
+
 ## License
 
 Copyright © 2019 Toran Billups https://toranbillups.com
