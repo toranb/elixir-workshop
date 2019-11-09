@@ -116,7 +116,7 @@ iex -S mix test test/game/game_test.exs
 
 When `IEx.pry` is executed the runtime will ask you `Allow? [Yn]`
 
-If you answer `n` the program will continue without interruption. If you answer `Y` you can ask questions of the running program. If you want to continue execution of the program type `respawn` and hit enter.
+If you answer `n` the program will continue without interruption. If you answer `Y` you can ask questions of the running program. If you want to continue execution of the program type `respawn` and hit enter. To exit the REPL between test runs do `ctrl + c` twice.
 
 For a complete list of [debugging](https://elixir-lang.org/getting-started/debugging.html) options be sure to read over the getting started guide.
 
