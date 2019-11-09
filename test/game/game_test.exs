@@ -234,7 +234,7 @@ defmodule Game.EngineTest do
   #   assert paired_four == false
   # end
 
-  # test "flipping the last match will mark the winner as truthy and prepare restart will unflip/unpair each card" do
+  # test "flipping the last match will mark the winner as truthy" do
   #   state = Game.Engine.new(@playing_cards, FakeRandom)
   #   flip_one_state = Game.Engine.flip(state, @id_two_a)
   #   paired_one_state = Game.Engine.flip(flip_one_state, @id_two_b)
@@ -263,39 +263,23 @@ defmodule Game.EngineTest do
   #   assert paired_two == true
   #   assert paired_three == true
   #   assert paired_four == true
+  # end
 
-  #   prepare_restart_state = Game.Engine.prepare_restart(paired_two_state)
+  # test "prepare restart will unpair each card" do
+  #   state = %Game.Engine{
+  #     cards: [
+  #       %Card{:id => "24CEDF1", :flipped => false, :paired => true},
+  #       %Card{:id => "3079821", :flipped => false, :paired => true},
+  #       %Card{:id => "24CEDF2", :flipped => false, :paired => true},
+  #       %Card{:id => "3079822", :flipped => false, :paired => true}
+  #     ],
+  #     winner: true,
+  #     animating: false
+  #   }
 
-  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = prepare_restart_state
+  #   prepare_restart_state = Game.Engine.prepare_restart(state)
 
-  #   assert winner == true
-  #   assert animating == false
-  #   assert Enum.count(cards) == 4
-
-  #   [
-  #     %Card{flipped: flip_one, paired: paired_one},
-  #     %Card{flipped: flip_two, paired: paired_two},
-  #     %Card{flipped: flip_three, paired: paired_three},
-  #     %Card{flipped: flip_four, paired: paired_four}
-  #   ] = cards
-
-  #   assert flip_one == false
-  #   assert flip_two == false
-  #   assert flip_three == false
-  #   assert flip_four == false
-
-  #   assert paired_one == false
-  #   assert paired_two == false
-  #   assert paired_three == false
-  #   assert paired_four == false
-
-  #   restart_state = Game.Engine.restart(prepare_restart_state)
-
-  #   %Game.Engine{cards: cards, winner: winner, animating: animating} = restart_state
-
-  #   assert winner == false
-  #   assert animating == false
-  #   assert Enum.count(cards) == 4
+  #   %Game.Engine{cards: cards} = prepare_restart_state
 
   #   [
   #     %Card{flipped: flip_one, paired: paired_one},
@@ -351,4 +335,25 @@ defmodule Game.EngineTest do
   #   assert winner == nil
   #   assert animating == false
   # end
+
+  test "restart will flip winner to false" do
+    state = %Game.Engine{
+      cards: [
+        %Card{:id => "24CEDF1", :flipped => false, :paired => false},
+        %Card{:id => "3079821", :flipped => false, :paired => false},
+        %Card{:id => "24CEDF2", :flipped => false, :paired => false},
+        %Card{:id => "3079822", :flipped => false, :paired => false}
+      ],
+      winner: true,
+      animating: false,
+      playing_cards: @playing_cards,
+      random: FakeRandom
+    }
+
+    restart_state = Game.Engine.restart(state)
+
+    %Game.Engine{winner: winner} = restart_state
+
+    assert winner == false
+  end
 end
