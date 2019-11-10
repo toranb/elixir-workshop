@@ -122,9 +122,11 @@ For a complete list of [debugging](https://elixir-lang.org/getting-started/debug
 
 ## Learning Elixir
 
-Because much of the workshop requires you to loop over the cards list you might benefit from the getting started on [enumerables](https://elixir-lang.org/getting-started/enumerables-and-streams.html#enumerables) and the [pipe-operator](https://elixir-lang.org/getting-started/enumerables-and-streams.html#the-pipe-operator).
+Because much of the workshop requires you cycle through a list of cards you might benefit from the [enumerables](https://elixir-lang.org/getting-started/enumerables-and-streams.html#enumerables) getting started guide. In addition, the [Enum](https://hexdocs.pm/elixir/Enum.html) module documentation provides a comprehensive look and the available the functions including: [map](https://hexdocs.pm/elixir/Enum.html#map/2), [filter](https://hexdocs.pm/elixir/Enum.html#filter/2), [reject](https://hexdocs.pm/elixir/Enum.html#reject/2).
 
-In addition, the getting started on [structs](https://elixir-lang.org/getting-started/structs.html) will offer some insights about how to destructure and update them in Elixir.
+Elixir is a functional programming language so be sure to try out the [pipe-operator](https://elixir-lang.org/getting-started/enumerables-and-streams.html#the-pipe-operator) as you compose different transformations on the card data struct.
+
+The game engine itself is a struct so I would also recommend looking over the [structs](https://elixir-lang.org/getting-started/structs.html) getting started guide. This resource offers some insight into how you destructure and update the data.
 
 ## License
 
