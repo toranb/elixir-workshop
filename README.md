@@ -122,7 +122,7 @@ For a complete list of [debugging](https://elixir-lang.org/getting-started/debug
 
 ## Learning Elixir
 
-Because much of the workshop requires you cycle through a list of cards you might benefit from the [enumerables](https://elixir-lang.org/getting-started/enumerables-and-streams.html#enumerables) getting started guide. In addition, the [Enum](https://hexdocs.pm/elixir/Enum.html) module documentation provides a comprehensive look and the available the functions including: [map](https://hexdocs.pm/elixir/Enum.html#map/2), [filter](https://hexdocs.pm/elixir/Enum.html#filter/2), [reject](https://hexdocs.pm/elixir/Enum.html#reject/2).
+Because much of the workshop requires you cycle through a list of cards you might benefit from the [enumerables](https://elixir-lang.org/getting-started/enumerables-and-streams.html#enumerables) getting started guide. In addition, the [Enum](https://hexdocs.pm/elixir/Enum.html) module documentation provides a comprehensive look at the available functions including: [map](https://hexdocs.pm/elixir/Enum.html#map/2), [filter](https://hexdocs.pm/elixir/Enum.html#filter/2), [reject](https://hexdocs.pm/elixir/Enum.html#reject/2).
 
 Elixir is a functional programming language so be sure to try out the [pipe-operator](https://elixir-lang.org/getting-started/enumerables-and-streams.html#the-pipe-operator) as you compose different transformations on the card data struct.
 
